@@ -93,6 +93,4 @@ Authorization: Bearer {{auth_token}}
 
 ###
 
-# Weather Forecast (existing endpoint)
-GET {{AMA_AI.API_HostAddress}}/weatherforecast/
-Accept: application/json
+
