@@ -1,84 +1,78 @@
-# .NET Core build folders
+# ==========================================
+# .NET N-Layer Architecture GitIgnore
+# ==========================================
+
+# ==========================================
+# Build Outputs
+# ==========================================
+## .NET Core build folders
 bin/
 obj/
+out/
+publish/
 
-# Visual Studio files
-.vs/
-*.user
-*.userosscache
-*.sln.docstates
-*.userprefs
-
-# Build results
+## Build results
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
 x64/
 x86/
-build/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
 bld/
 [Bb]in/
 [Oo]bj/
-[Oo]ut/
-msbuild.log
-msbuild.err
-msbuild.wrn
+[Ll]og/
+[Ll]ogs/
 
-# Visual Studio Code
-.vscode/
-*.code-workspace
+## MSBuild files
+*.msbuild.log
+*.msbuild.err
+*.msbuild.wrn
+*.msbuild.tlog
 
-# JetBrains Rider
-.idea/
-*.sln.iml
-
-# User-specific files
-*.rsuser
-*.suo
+# ==========================================
+# IDE and Editor Files
+# ==========================================
+## Visual Studio
+.vs/
 *.user
 *.userosscache
 *.sln.docstates
-
-# Mono auto generated files
-mono_crash.*
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# JetBrains Rider
-.idea/
+*.userprefs
+*.suo
+*.user
+*.rsuser
+*.sln.docstates
+*.userosscache
 *.sln.iml
 
-# macOS
+## Visual Studio Code
+.vscode/
+*.code-workspace
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+## JetBrains Rider
+.idea/
+*.sln.iml
+*.DotSettings.user
+
+## Visual Studio for Mac
+.vsmac/
+
+# ==========================================
+# Operating System Files
+# ==========================================
+## macOS
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Icon must end with two \r
 Icon
-
-# Thumbnails
 ._*
-
-# Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
@@ -86,126 +80,264 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
 
-# Linux
+## Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+## Linux
 *~
-
-# temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
-
-# KDE directory preferences
 .directory
-
-# Linux trash folder which might appear on any partition or disk
 .Trash-*
-
-# .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-# Logs
-logs
-*.log
+# ==========================================
+# Configuration and Environment Files
+# ==========================================
+## Environment-specific configuration
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+appsettings.Test.json
+appsettings.Local.json
+appsettings.*.json
+!appsettings.json
+
+## Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+
+## User secrets
+secrets.json
+*.pfx
+*.key
+*.pem
+*.p12
+*.crt
+*.cer
+
+# ==========================================
+# Database and Data Files
+# ==========================================
+## SQL Server
+*.mdf
+*.ldf
+*.ndf
+
+## SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+## Entity Framework
+Migrations/*.Designer.cs
+Migrations/*.Designer.resx
+
+# ==========================================
+# Testing and Coverage
+# ==========================================
+## Test Results
+TestResults/
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+## Coverage reports
+*.coverage
+*.coveragexml
+coverage/
+*.lcov
+.nyc_output/
+
+## NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+## xUnit
+xunit.xml
+
+# ==========================================
+# Package Management
+# ==========================================
+## NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+## Node.js (if using frontend tools)
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-*.lcov
-
-# nyc test coverage
-.nyc_output
-
-# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
-
-# Bower dependency directory (https://bower.io/)
-bower_components
-
-# node_modules
-node_modules/
-
-# Optional npm cache directory
 .npm
-
-# Optional eslint cache
 .eslintcache
+.yarn-integrity
 
-# Microbundle cache
+# ==========================================
+# Logs and Temporary Files
+# ==========================================
+## Logs
+logs/
+*.log
+*.tlog
+*.log.*
+
+## Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+## Cache directories
+.cache/
+.parcel-cache/
 .rpt2_cache/
 .rts2_cache_cjs/
 .rts2_cache_es/
 .rts2_cache_umd/
 
-# Optional REPL history
-.node_repl_history
+# ==========================================
+# Docker and Containerization
+# ==========================================
+## Docker
+.dockerignore
+Dockerfile.dev
+docker-compose.override.yml
+docker-compose.override.yaml
 
-# Output of 'npm pack'
-*.tgz
+# ==========================================
+# CI/CD and Deployment
+# ==========================================
+## Azure DevOps
+.azdo/
+.vsts/
 
-# Yarn Integrity file
-.yarn-integrity
+## GitHub Actions
+.github/workflows/*.log
 
-# dotenv environment variables file
-.env
-.env.test
-.env.local
-.env.production
+## Deployment
+deploy/
+dist/
+build/
+publish/
 
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
-
-# Next.js build output
-.next
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Gatsby files
-.cache/
-public
-
-# Storybook build outputs
-.out
-.storybook-out
-
-# Temporary folders
-tmp/
-temp/
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Application specific
-appsettings.Development.json
-appsettings.Production.json
-appsettings.Staging.json
+# ==========================================
+# Security and Certificates
+# ==========================================
+## Certificates and keys
 *.pfx
+*.p12
 *.key
 *.pem
+*.crt
+*.cer
+*.der
+*.p7b
+*.p7c
 
-# Keep the main appsettings.json but ignore environment-specific ones
-!appsettings.json 
+## SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# ==========================================
+# Documentation and Reports
+# ==========================================
+## Generated documentation
+docs/_build/
+docs/api/
+
+## Reports
+reports/
+*.report
+
+# ==========================================
+# Backup and Archive Files
+# ==========================================
+## Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+
+## Archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ==========================================
+# N-Layer Architecture Specific
+# ==========================================
+## Keep solution file but ignore user-specific solution files
+*.sln.docstates
+*.suo
+
+## Ignore any layer-specific temporary files
+**/temp/
+**/tmp/
+**/cache/
+
+## Ignore any generated API documentation
+**/swagger/
+**/api-docs/
+
+## Ignore any database migration temporary files
+**/Migrations/*.Designer.cs
+**/Migrations/*.Designer.resx
+
+# ==========================================
+# Keep Important Files
+# ==========================================
+## Keep main configuration files
+!appsettings.json
+!appsettings.Example.json
+!appsettings.Template.json
+
+## Keep solution file
+!*.sln
+
+## Keep project files
+!*.csproj
+!*.vbproj
+!*.fsproj
+
+## Keep important documentation
+!README.md
+!LICENSE
+!CHANGELOG.md
+!CONTRIBUTING.md
+
+## Keep important configuration templates
+!appsettings.Template.json
+!appsettings.Example.json 

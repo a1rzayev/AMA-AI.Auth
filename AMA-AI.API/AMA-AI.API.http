@@ -1,0 +1,6 @@
+@AMA_AI.API_HostAddress = http://localhost:5120
+
+GET {{AMA_AI.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
