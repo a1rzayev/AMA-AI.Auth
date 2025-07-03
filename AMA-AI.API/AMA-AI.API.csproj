@@ -12,4 +12,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AMA-AI.CORE\AMA-AI.CORE.csproj" />
+    <ProjectReference Include="..\AMA-AI.Infrastructure\AMA-AI.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
