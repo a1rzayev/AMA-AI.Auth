@@ -1,6 +1,96 @@
 @AMA_AI.API_HostAddress = http://localhost:5120
+@ContentType = application/json
 
-GET {{AMA_AI.API_HostAddress}}/weatherforecast/
-Accept: application/json
+### Authentication Endpoints
+
+# Register a new user
+POST {{AMA_AI.API_HostAddress}}/api/auth/register
+Content-Type: {{ContentType}}
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "Password123!",
+  "confirmPassword": "Password123!",
+  "firstName": "Test",
+  "lastName": "User",
+  "phoneNumber": "+1234567890"
+}
 
 ###
+
+# Login user
+POST {{AMA_AI.API_HostAddress}}/api/auth/login
+Content-Type: {{ContentType}}
+
+{
+  "username": "testuser",
+  "password": "Password123!",
+  "rememberMe": false
+}
+
+###
+
+# Forgot password
+POST {{AMA_AI.API_HostAddress}}/api/auth/forgot-password
+Content-Type: {{ContentType}}
+
+"test@example.com"
+
+###
+
+# Reset password
+POST {{AMA_AI.API_HostAddress}}/api/auth/reset-password
+Content-Type: {{ContentType}}
+
+{
+  "email": "test@example.com",
+  "token": "reset-token-here",
+  "newPassword": "NewPassword123!",
+  "confirmNewPassword": "NewPassword123!"
+}
+
+###
+
+# Change password (requires authentication)
+POST {{AMA_AI.API_HostAddress}}/api/auth/change-password
+Content-Type: {{ContentType}}
+Authorization: Bearer {{auth_token}}
+
+{
+  "currentPassword": "Password123!",
+  "newPassword": "NewPassword123!",
+  "confirmNewPassword": "NewPassword123!"
+}
+
+###
+
+# Confirm email
+POST {{AMA_AI.API_HostAddress}}/api/auth/confirm-email
+Content-Type: {{ContentType}}
+
+"email-confirmation-token-here"
+
+###
+
+# Logout
+POST {{AMA_AI.API_HostAddress}}/api/auth/logout
+Authorization: Bearer {{auth_token}}
+
+###
+
+# Refresh token
+POST {{AMA_AI.API_HostAddress}}/api/auth/refresh-token
+Content-Type: {{ContentType}}
+
+"refresh-token-here"
+
+###
+
+# Validate token
+POST {{AMA_AI.API_HostAddress}}/api/auth/validate-token
+Authorization: Bearer {{auth_token}}
+
+###
+
+
