@@ -5,6 +5,8 @@ using AMA_AI.CORE.Interfaces.Services;
 using AMA_AI.CORE.Interfaces.Repositories;
 using AMA_AI.CORE.Services;
 using AMA_AI.Infrastructure.Repositories;
+using AMA_AI.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,10 @@ builder.Services.AddSwaggerGen();
 
 // Add Controllers
 builder.Services.AddControllers();
+
+// Add Entity Framework with SQL Server
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register Services
 builder.Services.AddScoped<IAuthService, AuthService>();

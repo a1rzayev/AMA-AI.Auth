@@ -1,89 +1,63 @@
 using AMA_AI.CORE.Interfaces.Repositories;
+using AMA_AI.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AMA_AI.Infrastructure.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly Dictionary<Guid, T> _entities = new();
-        protected readonly object _lock = new();
+        protected readonly ApplicationDbContext _context;
+        protected readonly DbSet<T> _dbSet;
+
+        protected BaseRepository(ApplicationDbContext context)
+        {
+            _context = context;
+            _dbSet = context.Set<T>();
+        }
 
         public virtual async Task<T?> GetByIdAsync(Guid id)
         {
-            await Task.Delay(1); // Simulate async operation
-            lock (_lock)
-            {
-                return _entities.TryGetValue(id, out var entity) ? entity : null;
-            }
+            return await _dbSet.FindAsync(id);
         }
 
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
-            await Task.Delay(1); // Simulate async operation
-            lock (_lock)
-            {
-                return _entities.Values.ToList();
-            }
+            return await _dbSet.ToListAsync();
         }
 
         public virtual async Task<T> AddAsync(T entity)
         {
-            await Task.Delay(1); // Simulate async operation
-            lock (_lock)
-            {
-                // Get the Id property using reflection
-                var idProperty = entity.GetType().GetProperty("Id");
-                if (idProperty != null)
-                {
-                    var id = (Guid)idProperty.GetValue(entity)!;
-                    _entities[id] = entity;
-                }
-                return entity;
-            }
+            var result = await _dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return result.Entity;
         }
 
         public virtual async Task<T> UpdateAsync(T entity)
         {
-            await Task.Delay(1); // Simulate async operation
-            lock (_lock)
-            {
-                var idProperty = entity.GetType().GetProperty("Id");
-                if (idProperty != null)
-                {
-                    var id = (Guid)idProperty.GetValue(entity)!;
-                    if (_entities.ContainsKey(id))
-                    {
-                        _entities[id] = entity;
-                    }
-                }
-                return entity;
-            }
+            _dbSet.Update(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
 
         public virtual async Task<bool> DeleteAsync(Guid id)
         {
-            await Task.Delay(1); // Simulate async operation
-            lock (_lock)
-            {
-                return _entities.Remove(id);
-            }
+            var entity = await GetByIdAsync(id);
+            if (entity == null)
+                return false;
+
+            _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public virtual async Task<bool> ExistsAsync(Guid id)
         {
-            await Task.Delay(1); // Simulate async operation
-            lock (_lock)
-            {
-                return _entities.ContainsKey(id);
-            }
+            return await _dbSet.FindAsync(id) != null;
         }
 
         public virtual async Task<int> CountAsync()
         {
-            await Task.Delay(1); // Simulate async operation
-            lock (_lock)
-            {
-                return _entities.Count;
-            }
+            return await _dbSet.CountAsync();
         }
     }
 } 
