@@ -42,8 +42,6 @@ namespace AMA_AI.API.Controllers
                     user.Id,
                     user.Username,
                     user.Email,
-                    user.FirstName,
-                    user.LastName,
                     user.Role
                 } : null
             });
